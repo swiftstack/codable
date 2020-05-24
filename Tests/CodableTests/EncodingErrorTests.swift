@@ -3,7 +3,7 @@ import Test
 
 class EncodingErrorTests: TestCase {
     struct Encoder: Swift.Encoder {
-        struct Error: Swift.Error {}
+        struct Error: Equatable, Swift.Error {}
 
         var codingPath: [CodingKey] { return [] }
         var userInfo: [CodingUserInfoKey : Any] { return [:] }
@@ -40,8 +40,9 @@ class EncodingErrorTests: TestCase {
 
         let encoder = Encoder()
         let user = User(name: "coder")
-        assertThrowsError(try user.encode(to: encoder)) { error in
-            assertNotNil(error as? Encoder.Error)
+
+        expect(throws: Encoder.Error()) {
+            try user.encode(to: encoder)
         }
     }
 
@@ -61,8 +62,9 @@ class EncodingErrorTests: TestCase {
 
         let encoder = Encoder()
         let user = User(name: "coder")
-        assertThrowsError(try user.encode(to: encoder)) { error in
-            assertNotNil(error as? Encoder.Error)
+        
+        expect(throws: Encoder.Error()) {
+            try user.encode(to: encoder)
         }
     }
 
@@ -82,8 +84,9 @@ class EncodingErrorTests: TestCase {
 
         let encoder = Encoder()
         let user = User(name: "coder")
-        assertThrowsError(try user.encode(to: encoder)) { error in
-            assertNotNil(error as? Encoder.Error)
+
+        expect(throws: Encoder.Error()) {
+            try user.encode(to: encoder)
         }
     }
 }
