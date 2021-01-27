@@ -5,7 +5,7 @@ Helps you to throw an error on container request step, which is not allowed by t
 ## Package.swift
 
 ```swift
-.package(url: "https://github.com/swift-stack/codable.git", .branch("dev"))
+.package(url: "https://github.com/swift-stack/codable.git", .branch("fiber"))
 ```
 
 ## Usage
