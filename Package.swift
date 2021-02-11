@@ -15,9 +15,13 @@ let package = Package(
         .target(
             name: "Codable",
             dependencies: []),
-        .testTarget(
-            name: "CodableTests",
-            dependencies: ["Test", "Codable"])
+        .executableTarget(
+            name: "Tests/Codable/EncodingError",
+            dependencies: ["Test", "Codable"],
+            path: "Tests/Codable/EncodingError",
+            swiftSettings: [
+                .unsafeFlags(["-Xfrontend", "-enable-experimental-concurrency"])
+            ])
     ]
 )
 
