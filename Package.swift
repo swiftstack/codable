@@ -20,6 +20,7 @@ let package = Package(
             dependencies: ["Test", "Codable"],
             path: "Tests/Codable/EncodingError",
             swiftSettings: [
+                .unsafeFlags(["-Xfrontend", "-disable-availability-checking"]),
                 .unsafeFlags(["-Xfrontend", "-enable-experimental-concurrency"])
             ])
     ]
