@@ -6,10 +6,10 @@ let package = Package(
     products: [
         .library(
             name: "Codable",
-            targets: ["Codable"])
+            targets: ["Codable"]),
     ],
     dependencies: [
-        .package(name: "Test")
+        .package(name: "Test"),
     ],
     targets: [
         .target(
@@ -17,7 +17,7 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "CodableTests",
-            dependencies: ["Test", "Codable"])
+            dependencies: ["Test", "Codable"]),
     ]
 )
 
