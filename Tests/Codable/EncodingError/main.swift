@@ -24,7 +24,7 @@ struct Encoder: Swift.Encoder {
     }
 }
 
-test.case("KeyedContainer") {
+test("KeyedContainer") {
     struct User: Encodable {
         let name: String
 
@@ -46,7 +46,7 @@ test.case("KeyedContainer") {
     }
 }
 
-test.case("UnkeyedContainer") {
+test("UnkeyedContainer") {
     struct User: Encodable {
         let name: String
 
@@ -68,7 +68,7 @@ test.case("UnkeyedContainer") {
     }
 }
 
-test.case("SingleValueContainer") {
+test("SingleValueContainer") {
     struct User: Encodable {
         let name: String
 
@@ -90,4 +90,4 @@ test.case("SingleValueContainer") {
     }
 }
 
-test.run()
+await run()
