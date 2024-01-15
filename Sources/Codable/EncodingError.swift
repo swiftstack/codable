@@ -16,12 +16,11 @@ public struct KeyedEncodingError<Key: CodingKey> {
 
 extension EncodingError: Swift.Encoder {
     public var codingPath: [CodingKey] { return [] }
-    public var userInfo: [CodingUserInfoKey : Any] { return [:] }
+    public var userInfo: [CodingUserInfoKey: Any] { return [:] }
 
     public func container<Key>(
-        keyedBy type: Key.Type) -> KeyedEncodingContainer<Key>
-        where Key: CodingKey
-    {
+        keyedBy type: Key.Type
+    ) -> KeyedEncodingContainer<Key> where Key: CodingKey {
         return KeyedEncodingContainer(KeyedEncodingError(error))
     }
 
@@ -39,7 +38,7 @@ extension EncodingError: SingleValueEncodingContainer {
         throw error
     }
 
-    public func encode<T>(_ value: T) throws where T : Encodable {
+    public func encode<T>(_ value: T) throws where T: Encodable {
         throw error
     }
 }
@@ -48,8 +47,8 @@ extension EncodingError: UnkeyedEncodingContainer {
     public var count: Int { return 0 }
 
     public func nestedContainer<NestedKey>(
-        keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer<NestedKey>
-    {
+        keyedBy keyType: NestedKey.Type
+    ) -> KeyedEncodingContainer<NestedKey> {
         return KeyedEncodingContainer(KeyedEncodingError(error))
     }
 
@@ -64,7 +63,7 @@ extension EncodingError: UnkeyedEncodingContainer {
 
 extension KeyedEncodingError: KeyedEncodingContainerProtocol {
     public var codingPath: [CodingKey] { return [] }
-    public var userInfo: [CodingUserInfoKey : Any] { return [:] }
+    public var userInfo: [CodingUserInfoKey: Any] { return [:] }
 
     public func encodeNil(forKey key: Key) throws {
         throw error
@@ -76,15 +75,14 @@ extension KeyedEncodingError: KeyedEncodingContainerProtocol {
 
     public func nestedContainer<NestedKey>(
         keyedBy keyType: NestedKey.Type,
-        forKey key: Key) -> KeyedEncodingContainer<NestedKey>
-        where NestedKey: CodingKey
-    {
+        forKey key: Key
+    ) -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey {
         return KeyedEncodingContainer(KeyedEncodingError<NestedKey>(error))
     }
 
     public func nestedUnkeyedContainer(
-        forKey key: Key) -> UnkeyedEncodingContainer
-    {
+        forKey key: Key
+    ) -> UnkeyedEncodingContainer {
         return EncodingError(error)
     }
 

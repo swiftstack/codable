@@ -6,12 +6,11 @@ struct Encoder: Swift.Encoder {
     struct Error: Equatable, Swift.Error {}
 
     var codingPath: [CodingKey] { return [] }
-    var userInfo: [CodingUserInfoKey : Any] { return [:] }
+    var userInfo: [CodingUserInfoKey: Any] { return [:] }
 
     func container<Key>(
-        keyedBy type: Key.Type) -> KeyedEncodingContainer<Key>
-        where Key: CodingKey
-    {
+        keyedBy type: Key.Type
+    ) -> KeyedEncodingContainer<Key> where Key: CodingKey {
         return KeyedEncodingContainer(KeyedEncodingError(Error()))
     }
 
