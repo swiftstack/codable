@@ -18,16 +18,26 @@ let package = Package(
     targets: [
         .target(
             name: "Codable",
-            dependencies: []),
+            swiftSettings: swift6),
         .executableTarget(
             name: "Tests/Codable/EncodingError",
             dependencies: [
                 .target(name: "Codable"),
                 .product(name: "Test", package: "test"),
             ],
-            path: "Tests/Codable/EncodingError"),
+            path: "Tests/Codable/EncodingError",
+            swiftSettings: swift6),
     ]
 )
+
+let swift6: [SwiftSetting] = [
+    .enableUpcomingFeature("ConciseMagicFile"),
+    .enableUpcomingFeature("ForwardTrailingClosures"),
+    .enableUpcomingFeature("ExistentialAny"),
+    .enableUpcomingFeature("StrictConcurrency"),
+    .enableUpcomingFeature("ImplicitOpenExistentials"),
+    .enableUpcomingFeature("BareSlashRegexLiterals"),
+]
 
 // MARK: - custom package source
 
