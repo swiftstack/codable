@@ -21,7 +21,10 @@ let package = Package(
             dependencies: []),
         .executableTarget(
             name: "Tests/Codable/EncodingError",
-            dependencies: ["Test", "Codable"],
+            dependencies: [
+                .target(name: "Codable"),
+                .product(name: "Test", package: "test"),
+            ],
             path: "Tests/Codable/EncodingError"),
     ]
 )
@@ -68,6 +71,6 @@ extension Package.Dependency {
     static func package(name: String, source: Source) -> Package.Dependency {
         return source == .local
             ? .package(name: name, path: source.url(for: name))
-            : .package(name: name, url: source.url(for: name), .branch("dev"))
+            : .package(url: source.url(for: name), branch: "dev")
     }
 }
